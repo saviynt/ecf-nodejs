@@ -2,23 +2,35 @@ openapi: 3.0.3
 info:
   title: Saviynt External Connector Framework API Specification
   description: "This page lists the API specification for Saviynt External Connector\
-    \ Framework. <p><b>You can use \"Try it out\" option to test the API. \"Try it\
-    \ out\" will require you to authorize with a static token, you should first click\
-    \ on Authorize button and provide a value, for this ECF specification there is\
-    \ no actual token validation, so you can provide any string value for e.g. MyBearerToken\
-    \ and click on Authorize, then Close.</b>"
+    \ Framework. You can use \"Try it out\" option to explore the API specification.\
+    \ \"Try it out\" will require you to authorize with a static token, so you should\
+    \ first click on Authorize button at the top and provide a value, this is a sample\
+    \ specification and there is no actual token validation, so you can provide any\
+    \ string value for e.g. MyBearerToken and click on Authorize, then Close."
   version: "1.0"
 servers:
-- url: /
+- url: "{server}/api/{version}"
+  variables:
+    server:
+      default: https://example.com:443
+    version:
+      default: v1
 security:
 - bearerAuth: []
+tags:
+- name: User Import
+- name: Account Import
+- name: Access and Access Membership Import
+- name: User Provisioning
+- name: Account Provisioning
+- name: Access Provisioning
 paths:
-  /api/v1/users:
+  /users:
     post:
       tags:
       - User Import
       summary: This API returns the list of users
-      operationId: apiV1UsersPOST
+      operationId: post-users
       parameters:
       - name: offset
         in: query
@@ -38,7 +50,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/v1_users_body'
+              $ref: '#/components/schemas/users_body'
       responses:
         "200":
           description: Successful operation
@@ -49,12 +61,12 @@ paths:
         "400":
           description: Failure in fetching user list
       x-swagger-router-controller: UserImport
-  /api/v1/accounts:
+  /accounts:
     post:
       tags:
       - Account Import
       summary: This API returns the list of accounts
-      operationId: apiV1AccountsPOST
+      operationId: post-accounts
       parameters:
       - name: offset
         in: query
@@ -74,7 +86,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/v1_accounts_body'
+              $ref: '#/components/schemas/accounts_body'
       responses:
         "200":
           description: Successful operation
@@ -85,12 +97,12 @@ paths:
         "400":
           description: Failure in fetching accounts list
       x-swagger-router-controller: AccountImport
-  /api/v1/entitlements/groups:
+  /entitlements/groups:
     post:
       tags:
       - Access and Access Membership Import
       summary: This API returns the list of group type entitlements
-      operationId: apiV1EntitlementsGroupsPOST
+      operationId: post-entitlements-groups
       parameters:
       - name: offset
         in: query
@@ -121,12 +133,12 @@ paths:
         "400":
           description: Failure in fetching entitlements list
       x-swagger-router-controller: AccessAndAccessMembershipImport
-  /api/v1/entitlements/roles:
+  /entitlements/roles:
     post:
       tags:
       - Access and Access Membership Import
       summary: This API returns the list of role type entitlements
-      operationId: apiV1EntitlementsRolesPOST
+      operationId: post-entitlements-roles
       parameters:
       - name: offset
         in: query
@@ -157,13 +169,13 @@ paths:
         "400":
           description: Failure in fetching entitlements list
       x-swagger-router-controller: AccessAndAccessMembershipImport
-  /api/v1/accounts/group_memberships:
+  /accounts/group_memberships:
     get:
       tags:
       - Access and Access Membership Import
       summary: This API returns the list of account entitlement association for entitlement
         type group
-      operationId: apiV1AccountsGroup_membershipsGET
+      operationId: get-accounts-group_memberships
       responses:
         "200":
           description: Successful operation
@@ -174,13 +186,13 @@ paths:
         "400":
           description: Failure in fetching account group association
       x-swagger-router-controller: AccessAndAccessMembershipImport
-  /api/v1/accounts/role_memberships:
+  /accounts/role_memberships:
     get:
       tags:
       - Access and Access Membership Import
       summary: This API returns the list of account entitlement association for entitlement
         type role
-      operationId: apiV1AccountsRole_membershipsGET
+      operationId: get-accounts-role_memberships
       responses:
         "200":
           description: Successful operation
@@ -191,12 +203,12 @@ paths:
         "400":
           description: Failure in fetching account role association
       x-swagger-router-controller: AccessAndAccessMembershipImport
-  /api/v1/updateUser/{userName}:
+  /updateUser/{userName}:
     patch:
       tags:
       - User Provisioning
       summary: This API updates a user
-      operationId: apiV1UpdateUserUserNamePATCH
+      operationId: patchUpdateUser
       parameters:
       - name: userName
         in: path
@@ -220,12 +232,12 @@ paths:
         "400":
           description: Failure in user update
       x-swagger-router-controller: UserProvisioning
-  /api/v1/createAccount:
+  /createAccount:
     post:
       tags:
       - Account Provisioning
       summary: This API creates an account
-      operationId: apiV1CreateAccountPOST
+      operationId: postCreateAccount
       requestBody:
         content:
           application/json:
@@ -241,14 +253,14 @@ paths:
         "400":
           description: Failure in create account
       x-swagger-router-controller: AccountProvisioning
-  /api/v1/updateAccount/{accountID1}:
+  /updateAccount/{accountID}:
     patch:
       tags:
       - Account Provisioning
       summary: This API updates an account
-      operationId: apiV1UpdateAccountAccountID1PATCH
+      operationId: patchUpdateAccount
       parameters:
-      - name: accountID1
+      - name: accountID
         in: path
         required: true
         style: simple
@@ -259,81 +271,53 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/updateaccount'
+              type: object
+            examples:
+              Update Account:
+                value:
+                  firstname: Logan
+                  preferedFirstName: Logan
+                  lastname: Prasad
+                  middlename: "N"
+                  email: logan@example.net
+                  employeeType: Regular
+                  jobcodedesc: QA
+                  manager: Joe
+                  statuskey: "1"
+                  customproperty1: customized value
+              Enable Account:
+                value:
+                  status: "1"
+              Disable Account:
+                value:
+                  status: "0"
       responses:
         "200":
           description: Success Response
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/inline_response_200_2'
+              examples:
+                Update Account:
+                  value:
+                    errorCode: "0"
+                    message: SUCCESS Account Updated Successfully
+                Enable Account:
+                  value:
+                    errorCode: "0"
+                    message: SUCCESS Account Enabled Successfully
+                Disable Account:
+                  value:
+                    errorCode: "0"
+                    message: SUCCESS Account Disabled Successfully
         "400":
-          description: Failure in account update
+          description: Failure response
       x-swagger-router-controller: AccountProvisioning
-  /api/v1/updateAccount/{accountID2}:
-    patch:
-      tags:
-      - Account Provisioning
-      summary: This API enables an account
-      operationId: apiV1UpdateAccountAccountID2PATCH
-      parameters:
-      - name: accountID2
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/updateAccount_accountID2_body'
-      responses:
-        "200":
-          description: Success Response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/inline_response_200_3'
-        "400":
-          description: Failure in account enable
-      x-swagger-router-controller: AccountProvisioning
-  /api/v1/updateAccount/{accountID3}:
-    patch:
-      tags:
-      - Account Provisioning
-      summary: This API disables an account
-      operationId: apiV1UpdateAccountAccountID3PATCH
-      parameters:
-      - name: accountID3
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/updateAccount_accountID3_body'
-      responses:
-        "200":
-          description: Success Response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/inline_response_200_4'
-        "400":
-          description: Failure in account disable
-      x-swagger-router-controller: AccountProvisioning
-  /api/v1/removeAccount/{accountID}:
+  /removeAccount/{accountID}:
     delete:
       tags:
       - Account Provisioning
       summary: This API deletes an account
-      operationId: apiV1RemoveAccountAccountIDDELETE
+      operationId: deleteRemoveAccount
       parameters:
       - name: accountID
         in: path
@@ -348,37 +332,37 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_5'
+                $ref: '#/components/schemas/inline_response_200_2'
         "400":
           description: Failure in account deletion
       x-swagger-router-controller: AccountProvisioning
-  /api/v1/changePassword:
+  /changePassword:
     put:
       tags:
       - Account Provisioning
       summary: This API can be used to change password of an account
-      operationId: apiV1ChangePasswordPUT
+      operationId: put_changePassword
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/v1_changePassword_body'
+              $ref: '#/components/schemas/changePassword_body'
       responses:
         "200":
           description: Successful response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_6'
+                $ref: '#/components/schemas/inline_response_200_3'
         "400":
           description: Failure in change password
       x-swagger-router-controller: AccountProvisioning
-  /api/v1/entitlement/group/addAccess:
+  /entitlement/group/addAccess:
     put:
       tags:
       - Access Provisioning
       summary: This API grants group access to an account
-      operationId: apiV1EntitlementGroupAddAccessPUT
+      operationId: put_entitlementgroups
       requestBody:
         content:
           application/json:
@@ -390,16 +374,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_7'
+                $ref: '#/components/schemas/inline_response_200_4'
         "400":
           description: Failure response
       x-swagger-router-controller: AccessProvisioning
-  /api/v1/entitlement/role/addAccess:
+  /entitlement/role/addAccess:
     put:
       tags:
       - Access Provisioning
       summary: This API grants role access to an account
-      operationId: apiV1EntitlementRoleAddAccessPUT
+      operationId: entitlementRoleAddAccessPUT
       requestBody:
         content:
           application/json:
@@ -411,16 +395,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_8'
+                $ref: '#/components/schemas/inline_response_200_5'
         "400":
           description: Failure response
       x-swagger-router-controller: AccessProvisioning
-  /api/v1/entitlement/group/removeAccess:
+  /entitlement/group/removeAccess:
     put:
       tags:
       - Access Provisioning
       summary: This API removes group access from an account
-      operationId: apiV1EntitlementGroupRemoveAccessPUT
+      operationId: entitlementGroupRemoveAccessPUT
       requestBody:
         content:
           application/json:
@@ -432,16 +416,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_9'
+                $ref: '#/components/schemas/inline_response_200_6'
         "400":
           description: Failure response
       x-swagger-router-controller: AccessProvisioning
-  /api/v1/entitlement/role/removeAccess:
+  /entitlement/role/removeAccess:
     put:
       tags:
       - Access Provisioning
       summary: This API removes role access from an account
-      operationId: apiV1EntitlementRoleRemoveAccessPUT
+      operationId: entitlementRoleRemoveAccessPUT
       requestBody:
         content:
           application/json:
@@ -453,7 +437,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_10'
+                $ref: '#/components/schemas/inline_response_200_7'
         "400":
           description: Failure response
       x-swagger-router-controller: AccessProvisioning
@@ -2538,40 +2522,7 @@ components:
         customproperty1:
           type: string
           example: customized value
-    updateaccount:
-      type: object
-      properties:
-        firstname:
-          type: string
-          example: Logan
-        preferedFirstName:
-          type: string
-          example: Logan
-        lastname:
-          type: string
-          example: Prasad
-        middlename:
-          type: string
-          example: "N"
-        email:
-          type: string
-          example: logan@example.net
-        employeeType:
-          type: string
-          example: Regular
-        jobcodedesc:
-          type: string
-          example: QA
-        manager:
-          type: string
-          example: Joe
-        statuskey:
-          type: string
-          example: "1"
-        customproperty1:
-          type: string
-          example: customized value
-    v1_users_body:
+    users_body:
       type: object
       properties:
         fields:
@@ -2583,7 +2534,7 @@ components:
         order:
           type: string
           example: desc
-    v1_accounts_body:
+    accounts_body:
       type: object
       properties:
         q:
@@ -2654,59 +2605,11 @@ components:
           example: "0"
         message:
           type: string
-          example: SUCCESS Account Updated Successfully
-      example:
-        errorCode: "0"
-        message: SUCCESS Account Updated Successfully
-    updateAccount_accountID2_body:
-      type: object
-      properties:
-        status:
-          type: string
-          example: "1"
-    inline_response_200_3:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          example: "0"
-        message:
-          type: string
-          example: SUCCESS Account Enabled Successfully
-      example:
-        errorCode: "0"
-        message: SUCCESS Account Enabled Successfully
-    updateAccount_accountID3_body:
-      type: object
-      properties:
-        status:
-          type: string
-          example: "0"
-    inline_response_200_4:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          example: "0"
-        message:
-          type: string
-          example: SUCCESS Account Disabled Successfully
-      example:
-        errorCode: "0"
-        message: SUCCESS Account Disabled Successfully
-    inline_response_200_5:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          example: "0"
-        message:
-          type: string
           example: SUCCESS Account Removed Successfully
       example:
         errorCode: "0"
         message: SUCCESS Account Removed Successfully
-    v1_changePassword_body:
+    changePassword_body:
       type: object
       properties:
         accountID:
@@ -2715,7 +2618,7 @@ components:
         password:
           type: string
           example: EnterPasswordHere
-    inline_response_200_6:
+    inline_response_200_3:
       type: object
       properties:
         errorCode:
@@ -2736,7 +2639,7 @@ components:
         entitlementID:
           type: string
           example: "15553798176145"
-    inline_response_200_7:
+    inline_response_200_4:
       type: object
       properties:
         errorCode:
@@ -2757,7 +2660,7 @@ components:
         entitlementID:
           type: string
           example: "15553670302865"
-    inline_response_200_8:
+    inline_response_200_5:
       type: object
       properties:
         errorCode:
@@ -2778,7 +2681,7 @@ components:
         entitlementID:
           type: string
           example: "15553798176145"
-    inline_response_200_9:
+    inline_response_200_6:
       type: object
       properties:
         errorCode:
@@ -2799,7 +2702,7 @@ components:
         entitlementID:
           type: string
           example: "15553670302865"
-    inline_response_200_10:
+    inline_response_200_7:
       type: object
       properties:
         errorCode:

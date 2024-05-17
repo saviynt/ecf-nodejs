@@ -1,265 +1,79 @@
 'use strict';
 
 
+
 /**
  * This API returns the list of accounts
  *
- * body V1_accounts_body  (optional)
+ * body Accounts_body  (optional)
  * offset Integer  (optional)
  * pagesize Integer  (optional)
  * returns accounts
  **/
-exports.apiV1AccountsPOST = function(body,offset,pagesize) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "offset" : "0",
-  "count" : 3,
-  "accounts" : [ {
-    "ACCOUNTID" : "15553759289491",
-    "ACCOUNTCLASS" : "NULL",
-    "ACCOUNTTYPE" : "NULL",
-    "COMMENTS" : "NULL",
-    "CUSTOMPROPERTY1" : "Neil Sharma",
-    "CUSTOMPROPERTY10" : "NULL",
-    "CUSTOMPROPERTY11" : "NULL",
-    "CUSTOMPROPERTY12" : "NULL",
-    "CUSTOMPROPERTY13" : "NULL",
-    "CUSTOMPROPERTY14" : "52837161b68f41ad996d558406ee4a6d",
-    "CUSTOMPROPERTY15" : "NULL",
-    "CUSTOMPROPERTY16" : "NULL",
-    "CUSTOMPROPERTY17" : "NULL",
-    "CUSTOMPROPERTY18" : "NULL",
-    "CUSTOMPROPERTY19" : "NULL",
-    "CUSTOMPROPERTY2" : "NULL",
-    "CUSTOMPROPERTY20" : "NULL",
-    "CUSTOMPROPERTY21" : "NULL",
-    "CUSTOMPROPERTY22" : "NULL",
-    "CUSTOMPROPERTY23" : "NULL",
-    "CUSTOMPROPERTY24" : "NULL",
-    "CUSTOMPROPERTY25" : "NULL",
-    "CUSTOMPROPERTY26" : "NULL",
-    "CUSTOMPROPERTY27" : "NULL",
-    "CUSTOMPROPERTY28" : "NULL",
-    "CUSTOMPROPERTY29" : "NULL",
-    "CUSTOMPROPERTY3" : "NULL",
-    "CUSTOMPROPERTY30" : 0,
-    "CUSTOMPROPERTY31" : "NULL",
-    "CUSTOMPROPERTY32" : "NULL",
-    "CUSTOMPROPERTY33" : "NULL",
-    "CUSTOMPROPERTY34" : "NULL",
-    "CUSTOMPROPERTY35" : "NULL",
-    "CUSTOMPROPERTY36" : "NULL",
-    "CUSTOMPROPERTY37" : "NULL",
-    "CUSTOMPROPERTY38" : "NULL",
-    "CUSTOMPROPERTY39" : "NULL",
-    "CUSTOMPROPERTY4" : "nsharma@example.net",
-    "CUSTOMPROPERTY40" : "NULL",
-    "CUSTOMPROPERTY41" : "NULL",
-    "CUSTOMPROPERTY42" : "NULL",
-    "CUSTOMPROPERTY43" : "NULL",
-    "CUSTOMPROPERTY44" : "NULL",
-    "CUSTOMPROPERTY45" : "NULL",
-    "CUSTOMPROPERTY46" : "NULL",
-    "CUSTOMPROPERTY47" : "NULL",
-    "CUSTOMPROPERTY48" : "NULL",
-    "CUSTOMPROPERTY49" : "NULL",
-    "CUSTOMPROPERTY5" : "Neil",
-    "CUSTOMPROPERTY50" : "NULL",
-    "CUSTOMPROPERTY51" : "NULL",
-    "CUSTOMPROPERTY52" : "NULL",
-    "CUSTOMPROPERTY53" : "NULL",
-    "CUSTOMPROPERTY54" : "NULL",
-    "CUSTOMPROPERTY55" : "NULL",
-    "CUSTOMPROPERTY56" : "NULL",
-    "CUSTOMPROPERTY57" : "NULL",
-    "CUSTOMPROPERTY58" : "NULL",
-    "CUSTOMPROPERTY59" : "NULL",
-    "CUSTOMPROPERTY6" : "Sharma",
-    "CUSTOMPROPERTY60" : "NULL",
-    "CUSTOMPROPERTY7" : "NULL",
-    "CUSTOMPROPERTY8" : "NULL",
-    "CUSTOMPROPERTY9" : "NULL",
-    "DESCRIPTION" : "NULL",
-    "DISPLAYNAME" : "NULL",
-    "INCORRECTLOGONS" : "NULL",
-    "LASTLOGONDATE" : "NULL",
-    "LASTPASSWORDCHANGE" : "NULL",
-    "LOCKEDSTATE" : "NULL",
-    "NAME" : "nsharma",
-    "PASSWORDCHANGESTATUS" : "NULL",
-    "PASSWORDLOCKDATE" : "NULL",
-    "STATUS" : 1,
-    "UPDATEDATE" : "NULL",
-    "VALIDFROM" : "NULL",
-    "VALIDTHROUGH" : "NULL",
-    "TARGETLASTPASSWORDCHANGE" : "NULL"
-  }, {
-    "ACCOUNTID" : "15553759289492",
-    "ACCOUNTCLASS" : "NULL",
-    "ACCOUNTTYPE" : "NULL",
-    "COMMENTS" : "NULL",
-    "CUSTOMPROPERTY1" : "Morgan Choudhary",
-    "CUSTOMPROPERTY2" : "NULL",
-    "CUSTOMPROPERTY3" : "NULL",
-    "CUSTOMPROPERTY4" : "mchoudhary@example.net",
-    "CUSTOMPROPERTY5" : "Morgan",
-    "CUSTOMPROPERTY6" : "Choudhary",
-    "CUSTOMPROPERTY7" : "NULL",
-    "CUSTOMPROPERTY8" : "NULL",
-    "CUSTOMPROPERTY9" : "NULL",
-    "CUSTOMPROPERTY10" : "NULL",
-    "CUSTOMPROPERTY11" : "NULL",
-    "CUSTOMPROPERTY12" : "NULL",
-    "CUSTOMPROPERTY13" : "NULL",
-    "CUSTOMPROPERTY14" : "0d32ccd079004a1c8954caf934f220d6",
-    "CUSTOMPROPERTY15" : "NULL",
-    "CUSTOMPROPERTY16" : "NULL",
-    "CUSTOMPROPERTY17" : "NULL",
-    "CUSTOMPROPERTY18" : "NULL",
-    "CUSTOMPROPERTY19" : "NULL",
-    "CUSTOMPROPERTY20" : "NULL",
-    "CUSTOMPROPERTY21" : "NULL",
-    "CUSTOMPROPERTY22" : "NULL",
-    "CUSTOMPROPERTY23" : "NULL",
-    "CUSTOMPROPERTY24" : "NULL",
-    "CUSTOMPROPERTY25" : "NULL",
-    "CUSTOMPROPERTY26" : "NULL",
-    "CUSTOMPROPERTY27" : "NULL",
-    "CUSTOMPROPERTY28" : "NULL",
-    "CUSTOMPROPERTY29" : "NULL",
-    "CUSTOMPROPERTY30" : 0,
-    "CUSTOMPROPERTY31" : "NULL",
-    "CUSTOMPROPERTY32" : "NULL",
-    "CUSTOMPROPERTY33" : "NULL",
-    "CUSTOMPROPERTY34" : "NULL",
-    "CUSTOMPROPERTY35" : "NULL",
-    "CUSTOMPROPERTY36" : "NULL",
-    "CUSTOMPROPERTY37" : "NULL",
-    "CUSTOMPROPERTY38" : "NULL",
-    "CUSTOMPROPERTY39" : "NULL",
-    "CUSTOMPROPERTY40" : "NULL",
-    "CUSTOMPROPERTY41" : "NULL",
-    "CUSTOMPROPERTY42" : "NULL",
-    "CUSTOMPROPERTY43" : "NULL",
-    "CUSTOMPROPERTY44" : "NULL",
-    "CUSTOMPROPERTY45" : "NULL",
-    "CUSTOMPROPERTY46" : "NULL",
-    "CUSTOMPROPERTY47" : "NULL",
-    "CUSTOMPROPERTY48" : "NULL",
-    "CUSTOMPROPERTY49" : "NULL",
-    "CUSTOMPROPERTY50" : "NULL",
-    "CUSTOMPROPERTY51" : "NULL",
-    "CUSTOMPROPERTY52" : "NULL",
-    "CUSTOMPROPERTY53" : "NULL",
-    "CUSTOMPROPERTY54" : "NULL",
-    "CUSTOMPROPERTY55" : "NULL",
-    "CUSTOMPROPERTY56" : "NULL",
-    "CUSTOMPROPERTY57" : "NULL",
-    "CUSTOMPROPERTY58" : "NULL",
-    "CUSTOMPROPERTY59" : "NULL",
-    "CUSTOMPROPERTY60" : "NULL",
-    "DESCRIPTION" : "NULL",
-    "DISPLAYNAME" : "NULL",
-    "INCORRECTLOGONS" : "NULL",
-    "LASTLOGONDATE" : "NULL",
-    "LASTPASSWORDCHANGE" : "NULL",
-    "LOCKEDSTATE" : "NULL",
-    "NAME" : "mchoudhary",
-    "PASSWORDCHANGESTATUS" : "NULL",
-    "PASSWORDLOCKDATE" : "NULL",
-    "STATUS" : 1,
-    "UPDATEDATE" : "NULL",
-    "VALIDFROM" : "NULL",
-    "VALIDTHROUGH" : "NULL",
-    "TARGETLASTPASSWORDCHANGE" : "NULL"
-  }, {
-    "ACCOUNTID" : "15553759289493",
-    "ACCOUNTCLASS" : "NULL",
-    "ACCOUNTTYPE" : "NULL",
-    "COMMENTS" : "NULL",
-    "CUSTOMPROPERTY1" : "Logan Prasad",
-    "CUSTOMPROPERTY2" : "NULL",
-    "CUSTOMPROPERTY3" : "NULL",
-    "CUSTOMPROPERTY4" : "logan@example.net",
-    "CUSTOMPROPERTY5" : "Logan",
-    "CUSTOMPROPERTY6" : "Prasad",
-    "CUSTOMPROPERTY7" : "NULL",
-    "CUSTOMPROPERTY8" : "NULL",
-    "CUSTOMPROPERTY9" : "NULL",
-    "CUSTOMPROPERTY10" : "NULL",
-    "CUSTOMPROPERTY11" : "NULL",
-    "CUSTOMPROPERTY12" : "NULL",
-    "CUSTOMPROPERTY13" : "NULL",
-    "CUSTOMPROPERTY14" : "3aa5550b7fe348b98d7b5741afc65534",
-    "CUSTOMPROPERTY15" : "NULL",
-    "CUSTOMPROPERTY16" : "NULL",
-    "CUSTOMPROPERTY17" : "NULL",
-    "CUSTOMPROPERTY18" : "NULL",
-    "CUSTOMPROPERTY19" : "NULL",
-    "CUSTOMPROPERTY20" : "NULL",
-    "CUSTOMPROPERTY21" : "NULL",
-    "CUSTOMPROPERTY22" : "NULL",
-    "CUSTOMPROPERTY23" : "NULL",
-    "CUSTOMPROPERTY24" : "NULL",
-    "CUSTOMPROPERTY25" : "NULL",
-    "CUSTOMPROPERTY26" : "NULL",
-    "CUSTOMPROPERTY27" : "NULL",
-    "CUSTOMPROPERTY28" : "NULL",
-    "CUSTOMPROPERTY29" : "NULL",
-    "CUSTOMPROPERTY30" : 0,
-    "CUSTOMPROPERTY31" : "NULL",
-    "CUSTOMPROPERTY32" : "NULL",
-    "CUSTOMPROPERTY33" : "NULL",
-    "CUSTOMPROPERTY34" : "NULL",
-    "CUSTOMPROPERTY35" : "NULL",
-    "CUSTOMPROPERTY36" : "NULL",
-    "CUSTOMPROPERTY37" : "NULL",
-    "CUSTOMPROPERTY38" : "NULL",
-    "CUSTOMPROPERTY39" : "NULL",
-    "CUSTOMPROPERTY40" : "NULL",
-    "CUSTOMPROPERTY41" : "NULL",
-    "CUSTOMPROPERTY42" : "NULL",
-    "CUSTOMPROPERTY43" : "NULL",
-    "CUSTOMPROPERTY44" : "NULL",
-    "CUSTOMPROPERTY45" : "NULL",
-    "CUSTOMPROPERTY46" : "NULL",
-    "CUSTOMPROPERTY47" : "NULL",
-    "CUSTOMPROPERTY48" : "NULL",
-    "CUSTOMPROPERTY49" : "NULL",
-    "CUSTOMPROPERTY50" : "NULL",
-    "CUSTOMPROPERTY51" : "NULL",
-    "CUSTOMPROPERTY52" : "NULL",
-    "CUSTOMPROPERTY53" : "NULL",
-    "CUSTOMPROPERTY54" : "NULL",
-    "CUSTOMPROPERTY55" : "NULL",
-    "CUSTOMPROPERTY56" : "NULL",
-    "CUSTOMPROPERTY57" : "NULL",
-    "CUSTOMPROPERTY58" : "NULL",
-    "CUSTOMPROPERTY59" : "NULL",
-    "CUSTOMPROPERTY60" : "NULL",
-    "DESCRIPTION" : "NULL",
-    "DISPLAYNAME" : "NULL",
-    "INCORRECTLOGONS" : "NULL",
-    "LASTLOGONDATE" : "NULL",
-    "LASTPASSWORDCHANGE" : "NULL",
-    "LOCKEDSTATE" : "NULL",
-    "NAME" : "lprasad",
-    "PASSWORDCHANGESTATUS" : "NULL",
-    "PASSWORDLOCKDATE" : "NULL",
-    "STATUS" : 1,
-    "UPDATEDATE" : "NULL",
-    "VALIDFROM" : "NULL",
-    "VALIDTHROUGH" : "NULL",
-    "TARGETLASTPASSWORDCHANGE" : "NULL"
-  } ],
-  "totalCount" : 3
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
+exports.postAccounts = async function (body, offset = 0, pagesize = 10) {
+
+    const logger = require('../utils/logger');
+
+    logger.info("Fetching accounts list...");
+    var examples = {};  
+    const sheets = require('../utils/googlesheets');
+    const spreadsheetId = '1tZyExhNelfLaI68oBI3DwWly2p1xfY7VJ1k_CaOzoP0';
+
+try {
+   
+    const totalResponse = await sheets.spreadsheets.values.get({
+        spreadsheetId,
+        range: 'Accounts!A:A', // Assuming 'A' column contains IDs and it's continuous
+    });
+    const totalCount = totalResponse.data.values ? totalResponse.data.values.length - 1 : 0; // Subtract 1 for the header row
+
+    const headerRange = 'Accounts!1:1'; // Range for header row
+    const headerResponse = await sheets.spreadsheets.values.get({
+        spreadsheetId,
+        range: headerRange,
+    });
+
+    const headers = headerResponse.data.values[0];
+
+    // Calculate range based on offset and pageSize
+    const dataStartRow = offset + 2; // Offset starts from data row 1 (after header)
+    const range = `Accounts!A${dataStartRow}:F${dataStartRow + pagesize - 1}`;
+
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId,
+      range,
+    });
+    
+    const rows = response.data.values;
+    if (rows.length) {
+	  const accounts = rows.map(row => {
+        const account = {};
+        headers.forEach((header, index) => {
+          account[header] = row[index] || ''; // Ensure each header has a corresponding value
+        });
+        return account;
+      });
+
+	  examples = JSON.stringify({
+        offset: offset,
+        pagesize: pagesize,
+        totalCount: totalCount,
+        accounts: accounts
+      }, null, 2);
+
     } else {
-      resolve();
+	  
+	  examples = JSON.stringify({
+        offset: offset,
+        pagesize: pagesize,
+        totalCount: totalCount,
+        accounts: []
+      }, null, 2);
     }
-  });
+} catch (err) {
+    console.error('The API returned an error:', err);
+  }	
+
+    return examples;    
 }
 

@@ -1,0 +1,3 @@
+D:\Integration\ECF\ECF Custom Connector\ECF Sample Connector\obj\Debug\ECF-GoogleSheets.njsproj.AssemblyReference.cache
+D:\Integration\ECF\ECF Custom Connector\ECF Sample Connector\obj\Debug\ECF-GoogleSheets.njsproj.CoreCompileInputs.cache
+D:\Integration\ECF\ECF Custom Connector\ECF Sample Connector\bin\Microsoft.NodejsTools.WebRole.dll

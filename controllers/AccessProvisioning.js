@@ -3,42 +3,61 @@
 var utils = require('../utils/writer.js');
 var AccessProvisioning = require('../service/AccessProvisioningService');
 
-module.exports.apiV1EntitlementGroupAddAccessPUT = function apiV1EntitlementGroupAddAccessPUT (req, res, next, body) {
-  AccessProvisioning.apiV1EntitlementGroupAddAccessPUT(body)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
+module.exports.entitlementGroupRemoveAccessPUT = async function entitlementGroupRemoveAccessPUT (req, res, next, body) {
+  
+
+    try {
+        // Call the async function and wait for its result
+        const response = await AccessProvisioning.entitlementGroupRemoveAccessPUT(body)
+
+        // Write the JSON response
+        utils.writeJson(res, response);
+    } catch (error) {
+        // If an error occurs, write the error response
+        utils.writeJson(res, { error: error.message }, 500); // Assuming 500 is the appropriate HTTP status code for internal server error
+    }
 };
 
-module.exports.apiV1EntitlementGroupRemoveAccessPUT = function apiV1EntitlementGroupRemoveAccessPUT (req, res, next, body) {
-  AccessProvisioning.apiV1EntitlementGroupRemoveAccessPUT(body)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
+module.exports.entitlementRoleAddAccessPUT = async function entitlementRoleAddAccessPUT (req, res, next, body) {
+  
+    try {
+        // Call the async function and wait for its result
+        const response = await AccessProvisioning.entitlementRoleAddAccessPUT(body);
+
+        // Write the JSON response
+        utils.writeJson(res, response);
+    } catch (error) {
+        // If an error occurs, write the error response
+        utils.writeJson(res, { error: error.message }, 500); // Assuming 500 is the appropriate HTTP status code for internal server error
+    }
 };
 
-module.exports.apiV1EntitlementRoleAddAccessPUT = function apiV1EntitlementRoleAddAccessPUT (req, res, next, body) {
-  AccessProvisioning.apiV1EntitlementRoleAddAccessPUT(body)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
+module.exports.entitlementRoleRemoveAccessPUT = async function entitlementRoleRemoveAccessPUT (req, res, next, body) {
+  
+try {
+    // Call the async function and wait for its result
+    const response = await AccessProvisioning.entitlementRoleRemoveAccessPUT(body);
+
+    // Write the JSON response
+    utils.writeJson(res, response);
+} catch (error) {
+    // If an error occurs, write the error response
+    utils.writeJson(res, { error: error.message }, 500); // Assuming 500 is the appropriate HTTP status code for internal server error
+}
 };
 
-module.exports.apiV1EntitlementRoleRemoveAccessPUT = function apiV1EntitlementRoleRemoveAccessPUT (req, res, next, body) {
-  AccessProvisioning.apiV1EntitlementRoleRemoveAccessPUT(body)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
+module.exports.put_entitlementgroups = async function put_entitlementgroups (req, res, next, body) {
+
+    try {
+        // Call the async function and wait for its result
+        const response = await AccessProvisioning.put_entitlementgroups(body);
+
+        // Write the JSON response
+        utils.writeJson(res, response);
+    } catch (error) {
+        // If an error occurs, write the error response
+        utils.writeJson(res, { error: error.message }, 500); // Assuming 500 is the appropriate HTTP status code for internal server error
+    }
 };
+    
+    

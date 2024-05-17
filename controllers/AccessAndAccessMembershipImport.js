@@ -3,42 +3,58 @@
 var utils = require('../utils/writer.js');
 var AccessAndAccessMembershipImport = require('../service/AccessAndAccessMembershipImportService');
 
-module.exports.apiV1AccountsGroup_membershipsGET = function apiV1AccountsGroup_membershipsGET (req, res, next) {
-  AccessAndAccessMembershipImport.apiV1AccountsGroup_membershipsGET()
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
+module.exports.getAccountsGroup_memberships = async function getAccountsGroup_memberships (req, res, next) {
+  
+try {
+    // Call the async function and wait for its result
+    const response = await AccessAndAccessMembershipImport.getAccountsGroup_memberships();
+
+    // Write the JSON response
+    utils.writeJson(res, response);
+} catch (error) {
+    // If an error occurs, write the error response
+    utils.writeJson(res, { error: error.message }, 500); // Assuming 500 is the appropriate HTTP status code for internal server error
+}
 };
 
-module.exports.apiV1AccountsRole_membershipsGET = function apiV1AccountsRole_membershipsGET (req, res, next) {
-  AccessAndAccessMembershipImport.apiV1AccountsRole_membershipsGET()
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
+module.exports.getAccountsRole_memberships = async function getAccountsRole_memberships (req, res, next) {
+  
+try {
+    // Call the async function and wait for its result
+    const response = await AccessAndAccessMembershipImport.getAccountsRole_memberships();
+
+    // Write the JSON response
+    utils.writeJson(res, response);
+} catch (error) {
+    // If an error occurs, write the error response
+    utils.writeJson(res, { error: error.message }, 500); // Assuming 500 is the appropriate HTTP status code for internal server error
+}
 };
 
-module.exports.apiV1EntitlementsGroupsPOST = function apiV1EntitlementsGroupsPOST (req, res, next, body, offset, pagesize) {
-  AccessAndAccessMembershipImport.apiV1EntitlementsGroupsPOST(body, offset, pagesize)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
+module.exports.postEntitlementsGroups = async function postEntitlementsGroups (req, res, next, body, offset, pagesize) {
+
+try {
+    // Call the async function and wait for its result
+    const response = await AccessAndAccessMembershipImport.postEntitlementsGroups(body, offset, pagesize);
+
+    // Write the JSON response
+    utils.writeJson(res, response);
+} catch (error) {
+    // If an error occurs, write the error response
+    utils.writeJson(res, { error: error.message }, 500); // Assuming 500 is the appropriate HTTP status code for internal server error
+}
 };
 
-module.exports.apiV1EntitlementsRolesPOST = function apiV1EntitlementsRolesPOST (req, res, next, body, offset, pagesize) {
-  AccessAndAccessMembershipImport.apiV1EntitlementsRolesPOST(body, offset, pagesize)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
+module.exports.postEntitlementsRoles = async function postEntitlementsRoles (req, res, next, body, offset, pagesize) {
+  
+try {
+    // Call the async function and wait for its result
+    const response = await AccessAndAccessMembershipImport.postEntitlementsRoles(body, offset, pagesize);
+
+    // Write the JSON response
+    utils.writeJson(res, response);
+} catch (error) {
+    // If an error occurs, write the error response
+    utils.writeJson(res, { error: error.message }, 500); // Assuming 500 is the appropriate HTTP status code for internal server error
+}
 };
