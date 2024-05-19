@@ -11,10 +11,10 @@ This server application is developed using Node-JS and integrates with Google Sh
 
 ## Configuration:
 1. Clone this repository and import this project to Visual Studio.
-2. Copy the downloaded credentials.json to <project base folder>/utils folder.
-3. Update below line in <project base folder>/utils/googlesheets.js file to refer the credentials.json.
+2. Copy the downloaded credentials.json to {Base Folder}/utils folder.
+3. Update below line in {Base Folder}/utils/googlesheets.js file to refer the credentials.json.
 const credentials = require('../utils/external-connector-framework-09842e2d8788.json');
-4. Sample code refers <b>[sample sheet](https://docs.google.com/spreadsheets/d/1tZyExhNelfLaI68oBI3DwWly2p1xfY7VJ1k_CaOzoP0/edit#gid=90651461)</b>, since you have created a new sheet, please update spreadsheet ID, sheet names and data ranges in respective <project base folder>/service/<file name based on operation>.
+4. Sample code refers <b>[sample sheet](https://docs.google.com/spreadsheets/d/1tZyExhNelfLaI68oBI3DwWly2p1xfY7VJ1k_CaOzoP0/edit#gid=90651461)</b>, since you have created a new sheet, please update spreadsheet ID, sheet names and data ranges in respective {Base Folder}/service/{File based on operation}.
 5. Install Required Packages: "npm install googleapis fs readline"
 
 ## Running the server
