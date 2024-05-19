@@ -1,7 +1,7 @@
 # ECF Node-JS server application (Integrates Google Sheets)
 
 ## Overview
-This server application is developed using Node-JS and integrates with Google Sheets as target application. This adheres to ECF API spec as defined <b>[here] (https://github.com/saviynt/ExternalConnectorFramework-APISpec/edit/main/spec/OpenAPISpec.yaml)</b>
+This server application is developed using Node-JS and integrates with Google Sheets as target application. This adheres to ECF API spec as defined <b>[here](https://github.com/saviynt/ExternalConnectorFramework-APISpec/edit/main/spec/OpenAPISpec.yaml)</b>
 
 ## Pre-requisite:
 1. Node.js: Download and install Node.js from the official website: <b>[nodejs.org](https://nodejs.org/en/download)</b>
@@ -10,11 +10,11 @@ This server application is developed using Node-JS and integrates with Google Sh
 4. Install Visual Studio or any other preferred Node JS IDE.
 
 ## Configuration:
-1. Clone this repository and import this project to Visual Studio/IDE.
-2. Copy the downloaded credentials.json to /<project base folder/>/utils folder.
-3. Update below line in /<project base folder/>/utils/googlesheets.js file to refer the credentials.json.
+1. Clone this repository and import this project to Visual Studio.
+2. Copy the downloaded credentials.json to <project base folder>/utils folder.
+3. Update below line in <project base folder>/utils/googlesheets.js file to refer the credentials.json.
 const credentials = require('../utils/external-connector-framework-09842e2d8788.json');
-4. Sample code refers <b>[sample sheet](https://docs.google.com/spreadsheets/d/1tZyExhNelfLaI68oBI3DwWly2p1xfY7VJ1k_CaOzoP0/edit#gid=90651461)</b>, since you have created a new sheet, please update spreadsheet ID, sheet names and data ranges in respective /<project base folder/>/service//<file name based on operation/>.
+4. Sample code refers <b>[sample sheet](https://docs.google.com/spreadsheets/d/1tZyExhNelfLaI68oBI3DwWly2p1xfY7VJ1k_CaOzoP0/edit#gid=90651461)</b>, since you have created a new sheet, please update spreadsheet ID, sheet names and data ranges in respective <project base folder>/service/<file name based on operation>.
 5. Install Required Packages: "npm install googleapis fs readline"
 
 ## Running the server
@@ -36,7 +36,7 @@ http://localhost:8080/docs
 This is just a sample code to give you head start in your ECF coding jorney. If you are reusing this code or writing a new project. please ensure to incorporate best coding practices.
 1. Write code which is optimized for better performance.
 2. Use detailed loggers.
-3. Don't read/write passwords in plain text (sample code is reading/writing sample password values in plain text in sheet).
+3. Don't read/write passwords in plain text (sample code is writing sample password values in plain text in sheet).
 4. Add custom logic for request body validation.
 5. Implement error handling.
 <p align="center">
