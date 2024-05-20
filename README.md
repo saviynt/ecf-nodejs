@@ -9,7 +9,7 @@ This server application is developed using Node-JS and integrates with Google Sh
 3. Create a google sheet (Refer <b>[sample sheet](https://docs.google.com/spreadsheets/d/1tZyExhNelfLaI68oBI3DwWly2p1xfY7VJ1k_CaOzoP0/edit#gid=90651461)</b> used while developing this sample application), which will be treated as your target application.
 4. Install Visual Studio or any other preferred Node JS IDE.
 
-## Configuration:
+## Customize the application code:
 1. Clone this repository and import this project to Visual Studio.
 2. Copy the downloaded credentials.json to {Base Folder}/utils folder.
 3. Update below line in {Base Folder}/utils/googlesheets.js file to refer the credentials.json.
